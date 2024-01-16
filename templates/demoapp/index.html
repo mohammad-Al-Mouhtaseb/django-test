@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Search Engine</title>
+        <style>
+            h1{
+                margin-inline: 25px;
+            }
+            input{
+                border:none;
+                background-color: #ffffff00;
+                color:#ddd;
+                padding-left: 10px;
+            }
+            input:focus{
+                outline: none;
+            }
+
+            
+            body{
+                text-align: -webkit-right;
+                background-color: #353535;
+            }
+            .main{
+                width:50%;
+                color: #ccf;
+                font-size: 17px;
+            }
+            .list{
+                margin: 45px;
+            }
+            a{
+                font-size: 21px;
+                color: #fff;
+                text-decoration :none;
+            }
+            th{
+                border:1px solid red;
+            }
+        </style>
+
+        <script>
+            function fun(){
+                x=document.getElementById("in").value;
+                window.location.href = 'http://127.0.0.1:8000/searsh?q='+x;
+            }
+        </script>
+    </head>
+    <body>
+        <nav style="display: flex;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row-reverse;
+        background-color: #262626;
+        color:#ddd;">
+        <h1>Search Engine</h1>
+        <div style="display: flex;
+        width:300px;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row-reverse;
+        border: 1px solid #aaa;
+        border-radius: 12px;">
+            <input type="text" name="in" id="in" style="width: 75%; height:25px" value="{{ q }}">
+            |
+            <input type="submit" value="Go" style="height:25px;" onclick="fun()">
+        </div>
+    </nav>
+    <br>
+    <div class="main">
+        {% if q|length == 0 %}
+            no data
+        {% else %}
+                {% for i,j,k,r in  zip %}
+                <div class="list">
+                    <a href="{{ j }}">{{ j }}</a>
+                    <br>
+                    Rank: {{ k.1 }}
+                    <br>
+                    Index: {{ r }}
+                </div>
+                {% endfor %}
+        {% endif %}
+    </div>
+    </body>
+</html>
