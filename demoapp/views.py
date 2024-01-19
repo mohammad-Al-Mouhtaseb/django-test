@@ -4,11 +4,8 @@ from django.core.exceptions import *
 from django.urls import *
 # from .models import Product 
 
-def index(request,id):
-    try: 
-        p = Product[id] 
-    except : 
-        raise Http404() 
-    return render(request,'demoapp/index.html',{"Product":p})
+def index(request):
+    return render(request,'demoapp/index.html',{"text":"index"})
 
-Product=["apple","mhd"]
+def about(request):
+    return render(request,'demoapp/about.html',{"text":"about"})
